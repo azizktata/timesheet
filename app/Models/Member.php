@@ -15,6 +15,7 @@ class Member extends Model
         'worker_id',
         'role',
         'joined_at',
+        'left_at',
         'hourly_rate'
     ];
     public function worker()

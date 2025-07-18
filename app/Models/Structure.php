@@ -12,7 +12,7 @@ class Structure extends Model
 
     protected $fillable = [
         'name',
-        'description',
+        'address',
         'type', // e.g., department, team, etc.
         // 'parent_id' // for hierarchical structures
     ];

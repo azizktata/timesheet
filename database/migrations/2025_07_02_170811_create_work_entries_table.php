@@ -16,9 +16,9 @@ return new class extends Migration
             $table->foreignId('mission_id')->constrained('missions')->onDelete('cascade');
             $table->foreignId('worker_id')->constrained('users')->onDelete('cascade');
             // $table->foreignId('predefined_task_id')->constrained('predefined_tasks');
-            $table->date('logged_date');
-            $table->decimal('hoursWorked', 3, 2);
-            // $table->text('comments')->nullable();
+            $table->date('entry_date');
+            $table->decimal('hours_worked', 3, 2);
+            $table->text('description')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

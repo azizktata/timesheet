@@ -12,7 +12,7 @@ class MissionTask extends Model
 
     protected $fillable = [
         'mission_id',
-        'predefined_task_id',
+        'task_type_id',
         'worker_id', // User ID of the worker assigned to the task
         'due_date',
         'status',
@@ -30,11 +30,11 @@ class MissionTask extends Model
         return $this->belongsTo(Mission::class, 'mission_id');
     }
     /**
-     * Get the predefined task associated with the mission task.
+     * Get the task type associated with the mission task.
      */
-    public function predefinedTask()
+    public function taskType()
     {
-        return $this->belongsTo(PredefinedTasks::class, 'predefined_task_id');
+        return $this->belongsTo(TaskType::class, 'task_type_id');
     }
 
     /**

@@ -14,8 +14,9 @@ class WorkEntry extends Model
         'worker_id',
         'mission_id',
         // 'predefined_task_id',
-        'logged_date',
-        'hoursWorked', // Changed from 'hours' to 'hoursWorked'
+        'entry_date',
+        'hours_worked', // Changed from 'hours' to 'hours_worked'
+        'description'
         // 'comments', // Commented out as per the context
     ];
 
@@ -28,8 +29,4 @@ class WorkEntry extends Model
     {
         return $this->belongsTo(Mission::class, 'mission_id');
     }
-    // public function predefinedTask()
-    // {
-    //     return $this->belongsTo(PredefinedTasks::class, 'predefined_task_id');
-    // }
 }

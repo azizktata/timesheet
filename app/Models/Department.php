@@ -26,8 +26,8 @@ class Department extends Model
     /**
      * Get the predefined tasks associated with the department.
      */
-    public function predefinedTasks()
+    public function taskTypes()
     {
-        return $this->hasMany(PredefinedTasks::class, 'department_id');
+        return $this->hasMany(TaskType::class, 'department_id');
     }
 }

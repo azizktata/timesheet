@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class PredefinedTasks extends Model
+class TaskType extends Model
 {
-    /** @use HasFactory<\Database\Factories\PredefinedTasksFactory> */
+    /** @use HasFactory<\Database\Factories\TaskTypeFactory> */
     use HasFactory, SoftDeletes;
     protected $fillable = [
         'name',

@@ -14,15 +14,15 @@ return new class extends Migration
         Schema::create('mission_tasks', function (Blueprint $table) {
             $table->id();
             $table->foreignId('mission_id')->constrained('missions');
-            $table->foreignId('predefined_task_id')->constrained('predefined_tasks');
+            $table->foreignId('task_type_id')->constrained('task_types');
             $table->foreignId('worker_id')->constrained('users');
 
             $table->date('due_date');
-            $table->enum('status', ['À Faire', 'En Cours', 'Terminé', 'En Attente', 'Annulé'])->default('À Faire');
+            $table->enum('status', ['À Faire', 'En Cours',  'En Attente', 'En Revue', 'Terminé', 'En Retard'])->default('À Faire');
             $table->enum('priority', ['basse', 'normale', 'élevée'])->default('normale');
             $table->text('descriptions')->nullable();
-            $table->string('estimated_hours')->nullable();
-            $table->string('actual_hours')->nullable();
+            $table->decimal('estimated_hours', 5, 2)->nullable();
+            $table->decimal('actual_hours', 5, 2)->nullable();
 
             $table->softDeletes();
             $table->timestamps();

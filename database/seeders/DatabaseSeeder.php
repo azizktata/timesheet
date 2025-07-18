@@ -194,7 +194,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Préparation annexe fiscale',
             'description' => 'Collecter les informations pour l\'annexe fiscale de InnovTech.',
             'due_date' => '2025-08-05',
-            'status' => 'À Fair',
+            'status' => 'À Faire',
             'estimated_hours' => 8.0,
             'mission_id' => $mission1->id,
             'task_type_id' => $taskType2->id, // Déclaration TVA (Fiscalité) - can be used for tax annex
@@ -204,7 +204,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Recherche sur dispositifs fiscaux',
             'description' => 'Rechercher les dispositifs fiscaux applicables à VertJardin.',
             'due_date' => '2025-07-28',
-            'status' => 'À Fair',
+            'status' => 'À Faire',
             'estimated_hours' => 12.0,
             'mission_id' => $mission2->id,
             'task_type_id' => $taskType3->id, // Analyse Financière (Conseil) - can be used for tax research
