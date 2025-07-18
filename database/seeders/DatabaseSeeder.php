@@ -11,6 +11,7 @@ use App\Models\MissionTask;
 use App\Models\Planning;
 use App\Models\PredefinedTasks;
 use App\Models\Structure;
+use App\Models\TaskType;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\WorkEntry;
@@ -77,39 +78,38 @@ class DatabaseSeeder extends Seeder
 
         // --- 4. Seed TaskTypes (4) ---
         // Link TaskTypes to Departments
-        $taskType1 = PredefinedTasks::firstOrCreate([
+        $taskType1 = TaskType::firstOrCreate([
             'name' => 'Vérification des comptes',
             'description' => 'Vérification des écritures comptables et des pièces justificatives.',
             'department_id' => $department1->id, // Audit
         ]);
-        $taskType2 = PredefinedTasks::firstOrCreate([
+        $taskType2 = TaskType::firstOrCreate([
             'name' => 'Déclaration TVA',
             'description' => 'Préparation et soumission des déclarations de TVA.',
             'department_id' => $department2->id, // Fiscalité
         ]);
-        $taskType3 = PredefinedTasks::firstOrCreate([
+        $taskType3 = TaskType::firstOrCreate([
             'name' => 'Analyse Financière',
             'description' => 'Analyse des états financiers pour des recommandations.',
             'department_id' => $department3->id, // Conseil
         ]);
-        $taskType4 = PredefinedTasks::firstOrCreate([
+        $taskType4 = TaskType::firstOrCreate([
             'name' => 'Saisie de données',
             'description' => 'Saisie de documents et informations dans le système.',
             'department_id' => $department1->id, // Can be used across departments, linking to Audit for example
         ]);
 
-        $taskTypes = PredefinedTasks::all(); // Get all task types for random selection
 
         // --- 5. Seed Clients (2) ---
         $client1 = Client::firstOrCreate([
             'name' => 'SARL InnovTech',
-            'contact_person' => 'Jean Dupont',
+
             'email' => 'contact@innovtech.com',
             'phone' => '0123456789',
         ]);
         $client2 = Client::firstOrCreate([
             'name' => 'EURL VertJardin',
-            'contact_person' => 'Sophie Martin',
+
             'email' => 'info@vertjardin.fr',
             'phone' => '0987654321',
         ]);
@@ -189,6 +189,7 @@ class DatabaseSeeder extends Seeder
             'mission_id' => $mission1->id,
             'task_type_id' => $taskType1->id, // Vérification des comptes (Audit)
             'assigned_worker_id' => $worker1->id,
+            'priority' => 'normale'
         ]);
         $missionTask2 = MissionTask::firstOrCreate([
             'name' => 'Préparation annexe fiscale',
@@ -199,6 +200,7 @@ class DatabaseSeeder extends Seeder
             'mission_id' => $mission1->id,
             'task_type_id' => $taskType2->id, // Déclaration TVA (Fiscalité) - can be used for tax annex
             'assigned_worker_id' => $worker2->id,
+            'priority' => 'basse'
         ]);
         $missionTask3 = MissionTask::firstOrCreate([
             'name' => 'Recherche sur dispositifs fiscaux',
@@ -209,6 +211,7 @@ class DatabaseSeeder extends Seeder
             'mission_id' => $mission2->id,
             'task_type_id' => $taskType3->id, // Analyse Financière (Conseil) - can be used for tax research
             'assigned_worker_id' => $worker1->id,
+            'priority' => 'élevée'
         ]);
 
         $missionTasks = MissionTask::all();
@@ -237,14 +240,14 @@ class DatabaseSeeder extends Seeder
         // --- 11. Seed Planning (2) ---
         // Link Planning to Manager, Worker, and Mission
         Planning::firstOrCreate([
-            'planning_date' => '2025-07-18',
+            'planned_date' => '2025-07-18',
             'details' => 'Pour aujourd\'hui, concentrez-vous sur la vérification des grands livres pour InnovTech. Assurez-vous de couvrir les transactions importantes.',
             'manager_id' => $manager1->id,
             'worker_id' => $worker1->id,
             'mission_id' => $mission1->id,
         ]);
         Planning::firstOrCreate([
-            'planning_date' => '2025-07-19',
+            'planned_date' => '2025-07-19',
             'details' => 'Demain, commencez la préparation de l\'annexe fiscale pour InnovTech. Récupérez les documents nécessaires auprès du client.',
             'manager_id' => $manager1->id,
             'worker_id' => $worker2->id,

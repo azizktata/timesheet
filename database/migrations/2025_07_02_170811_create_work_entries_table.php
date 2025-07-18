@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('work_entries', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('mission_id')->constrained('missions')->onDelete('cascade');
             $table->foreignId('worker_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('mission_task_id')->constrained('mission_tasks');
             // $table->foreignId('predefined_task_id')->constrained('predefined_tasks');
             $table->date('entry_date');
             $table->decimal('hours_worked', 3, 2);

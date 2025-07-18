@@ -4,16 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class MissionTask extends Model
 {
     /** @use HasFactory<\Database\Factories\MissionTaskFactory> */
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
+        'name',
         'mission_id',
         'task_type_id',
-        'worker_id', // User ID of the worker assigned to the task
+        'assigned_worker_id', // User ID of the worker assigned to the task
         'due_date',
         'status',
         'priority',

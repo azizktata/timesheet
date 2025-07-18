@@ -12,7 +12,8 @@ class WorkEntry extends Model
     use HasFactory, SoftDeletes;
     protected $fillable = [
         'worker_id',
-        'mission_id',
+
+        'mission_task_id',
         // 'predefined_task_id',
         'entry_date',
         'hours_worked', // Changed from 'hours' to 'hours_worked'
@@ -24,9 +25,5 @@ class WorkEntry extends Model
     {
         return $this->belongsTo(User::class, 'worker_id')
             ->whereHas('roles', fn($q) => $q->where('name', 'worker'));
-    }
-    public function mission()
-    {
-        return $this->belongsTo(Mission::class, 'mission_id');
     }
 }

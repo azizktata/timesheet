@@ -19,6 +19,7 @@ return new class extends Migration
             $table->date('joined_at')->nullable(); // Date when the member joined the mission
             $table->date('left_at')->nullable(); // Date when the member left the mission
             $table->decimal('hourly_rate', 5, 2)->nullable();
+            $table->string('role')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

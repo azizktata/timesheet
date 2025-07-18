@@ -14,8 +14,7 @@ return new class extends Migration
         Schema::create('structures', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('address')->nullable();
-            $table->string('type'); // e.g., department, team, etc.
+            $table->string('address')->nullable();
             $table->timestamps();
         });
     }

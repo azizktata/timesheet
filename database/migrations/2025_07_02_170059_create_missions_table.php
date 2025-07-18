@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->string('reference')->unique(); // Unique reference for the mission
+            $table->string('reference')->unique()->nullable(); // Unique reference for the mission
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
             $table->foreignId('manager_id')->constrained('users');
@@ -23,6 +23,7 @@ return new class extends Migration
             $table->unsignedInteger('estimated_hours')->nullable(); // Estimated hours for the mission
             $table->decimal('estimated_cost', 10, 2)->nullable(); // Estimated
             $table->enum('status', ['Planifiée', 'En Cours', 'Terminée', 'Annulée'])->default('Planifiée');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
