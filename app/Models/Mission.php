@@ -20,7 +20,7 @@ class Mission extends Model
         'status',
         'estimated_hours',
         'estimated_cost',
-        // 'client_id',
+        'client_id',
         // 'strucure_id',
     ];
 
@@ -52,5 +52,10 @@ class Mission extends Model
     public function plannings()
     {
         return $this->hasMany(Planning::class, 'mission_id');
+    }
+
+    public function client()
+    {
+        return $this->belongsTo(Client::class, 'client_id');
     }
 }

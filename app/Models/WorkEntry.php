@@ -13,10 +13,10 @@ class WorkEntry extends Model
     protected $fillable = [
         'worker_id',
         'mission_id',
-        'predefined_task_id',
+        // 'predefined_task_id',
         'logged_date',
-        'hours',
-        'comments',
+        'hoursWorked', // Changed from 'hours' to 'hoursWorked'
+        // 'comments', // Commented out as per the context
     ];
 
     public function worker()
@@ -28,8 +28,8 @@ class WorkEntry extends Model
     {
         return $this->belongsTo(Mission::class, 'mission_id');
     }
-    public function predefinedTask()
-    {
-        return $this->belongsTo(PredefinedTasks::class, 'predefined_task_id');
-    }
+    // public function predefinedTask()
+    // {
+    //     return $this->belongsTo(PredefinedTasks::class, 'predefined_task_id');
+    // }
 }

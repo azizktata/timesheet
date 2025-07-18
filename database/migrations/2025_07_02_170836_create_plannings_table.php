@@ -15,14 +15,15 @@ return new class extends Migration
             $table->id();
             $table->foreignId('mission_id')->constrained('missions')->onDelete('cascade');
             $table->foreignId('worker_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('manager_id')->constrained('users')->onDelete('cascade');
             $table->date('planned_date'); // Date for the planning entry
-            // $table->time('start_time'); // Start time for the planning entry
-            // $table->time('end_time'); // End time for the planning entry
-            $table->enum('status', ['pending', 'in_progress', 'completed', 'cancelled'])->default('pending'); // Status of the planning entry
-            $table->text('notes')->nullable(); // Additional notes or comments about the planning entry
-            $table->enum('priority', ['low', 'normal', 'high'])->default('normal'); // e.g., low, normal, high
+            $table->text('details')->nullable(); // Additional notes or comments about the planning entry
             $table->timestamps();
             $table->softDeletes();
+            // $table->time('start_time'); // Start time for the planning entry
+            // $table->time('end_time'); // End time for the planning entry
+            // $table->enum('status', ['pending', 'in_progress', 'completed', 'cancelled'])->default('pending'); // Status of the planning entry
+            // $table->enum('priority', ['low', 'normal', 'high'])->default('normal'); // e.g., low, normal, high
         });
     }
 

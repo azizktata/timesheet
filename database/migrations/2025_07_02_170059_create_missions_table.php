@@ -18,10 +18,11 @@ return new class extends Migration
             $table->string('reference')->unique(); // Unique reference for the mission
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
-            $table->foreignId('manager_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('manager_id')->constrained('users');
+            $table->foreignId('client_id')->constrained('clients');
             $table->unsignedInteger('estimated_hours')->nullable(); // Estimated hours for the mission
             $table->decimal('estimated_cost', 10, 2)->nullable(); // Estimated
-            $table->enum('status', ['pending', 'in_progress', 'completed', 'cancelled'])->default('pending');
+            $table->enum('status', ['Planifiée', 'En Cours', 'Terminée', 'Annulée'])->default('Planifiée');
             $table->timestamps();
         });
     }

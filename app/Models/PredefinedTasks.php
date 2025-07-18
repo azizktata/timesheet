@@ -21,12 +21,4 @@ class PredefinedTasks extends Model
     {
         return $this->belongsTo(Department::class, 'department_id');
     }
-    public function plannings()
-    {
-        return $this->hasMany(Planning::class, 'predefined_task_id');
-    }
-    public function workEntries()
-    {
-        return $this->hasMany(WorkEntry::class, 'predefined_task_id');
-    }
 }
