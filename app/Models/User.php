@@ -66,13 +66,26 @@ class User extends Authenticatable
     /**
      * Get the worker's missions.
      */
-    public function missions()
+    public function memberMissions()
     {
-        return $this->hasMany(Member::class, 'worker_id')->wheresHas('worker', function ($query) {
-            $query->where('name', 'worker');
-        })
-            ->with('mission')
-            ->whereHas('mission')
+        return $this->hasMany(Member::class, 'worker_id');
+    }
+
+    /**
+     * Get the worker's missions with their details.
+     */
+    public function workerMissions()
+    {
+        return $this->memberMissions()
+            ->with(['mission'])
+            ->get();
+    }
+
+    public function workerMissionTasks()
+    {
+        return $this->hasMany(MissionTask::class, 'assigned_worker_id')
+
+            ->with(['mission', 'taskType'])
             ->get();
     }
 }

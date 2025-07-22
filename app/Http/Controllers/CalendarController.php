@@ -5,16 +5,20 @@ namespace App\Http\Controllers;
 use App\Models\Mission;
 use App\Http\Requests\StoreMissionRequest;
 use App\Http\Requests\UpdateMissionRequest;
+use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
 
-class MissionController extends Controller
+class CalendarController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $missions = Mission::all();
-        return view('missions.index', compact('missions'));
+        $loggedInUser = Auth::user();
+        $workerMissions = $loggedInUser->workerMissions();
+        $myTasks = $loggedInUser->workerMissionTasks();
+        return Inertia::render('calendrier/index', compact('workerMissions', 'myTasks'));
     }
 
     /**

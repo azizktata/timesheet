@@ -1,0 +1,76 @@
+#calendar .fc-event {
+    width: 100% !important;
+    max-width: 90% !important;
+    margin: 0 auto !important;
+    height: 155px;
+    background-color: #e6f4ea;
+    border-top: 4px solid #6abf69;
+
+    font-size: 14px;
+    color: #333 !important;
+    padding: 6px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    margin: 2px auto;
+    z-index: 1;
+}
+.fc-event-time {
+    display: none;
+}
+#calendar .fc-daygrid-dot-event {
+    align-items: start;
+}
+.verif-icon {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 20px;
+    height: 20px;
+    background-color: #4caf50;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+/* Style the content center */
+#calendar .fc-event .fc-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    margin-top: 8px;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+}
+
+/* Make the title wrap and center */
+#calendar .fc-event-title {
+    white-space: normal;
+    word-wrap: break-word;
+    font-size: 14px;
+    line-height: 1.4;
+    max-width: 90%;
+    color: #333;
+    text-align: left;
+}
+
+/* This is your custom number at the bottom */
+#calendar .custom-number {
+    position: absolute;
+    bottom: 15px;
+    left: 8px;
+    right: 5px;
+    word-wrap: break-word;
+    width: 70%;
+    background-color: white;
+    color: #4caf50;
+    border-left: 4px solid #4caf50;
+    border-radius: 4px;
+    padding: 6px;
+    font-weight: bold;
+    font-size: 12px;
+    text-align: left;
+}
