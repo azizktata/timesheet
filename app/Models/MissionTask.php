@@ -47,4 +47,20 @@ class MissionTask extends Model
         return $this->belongsTo(User::class, 'worker_id')
             ->whereHas('roles', fn($q) => $q->where('name', 'worker'));
     }
+
+    /**
+     * Get the work entries associated with the mission task.
+     */
+    public function workEntries()
+    {
+        return $this->hasMany(WorkEntry::class, 'mission_task_id');
+    }
+
+    /**
+     * Get the comments associated with the mission task.
+     */
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'mission_task_id');
+    }
 }

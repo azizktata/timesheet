@@ -85,7 +85,7 @@ class User extends Authenticatable
     {
         return $this->hasMany(MissionTask::class, 'assigned_worker_id')
 
-            ->with(['mission', 'taskType'])
+            ->with(['mission', 'taskType', 'workEntries', 'comments', 'comments.author'])
             ->get();
     }
 }

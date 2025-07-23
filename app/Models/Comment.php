@@ -14,7 +14,7 @@ class Comment extends Model
     protected $fillable = [
         'author_id',
         'content',
-        'missionTask_id', // ID of the mission task this comment is associated with
+        'mission_task_id', // ID of the mission task this comment is associated with
         'is_important', // Boolean to mark if the comment is important
         'created_at', // Timestamp for when the comment was created
         'updated_at', // Timestamp for when the comment was last updated
@@ -23,7 +23,7 @@ class Comment extends Model
     /**
      * Get the user who made the comment.
      */
-    public function user()
+    public function author()
     {
         return $this->belongsTo(User::class, 'author_id');
     }
@@ -32,7 +32,7 @@ class Comment extends Model
      */
     public function missionTask()
     {
-        return $this->belongsTo(MissionTask::class, 'missionTask_id');
+        return $this->belongsTo(MissionTask::class, 'mission_task_id');
     }
 
     /**
@@ -40,7 +40,7 @@ class Comment extends Model
      */
     public function scopeForMissionTask($query, $missionTaskId)
     {
-        return $query->where('missionTask_id', $missionTaskId);
+        return $query->where('mission_task_id', $missionTaskId);
     }
 
     /**

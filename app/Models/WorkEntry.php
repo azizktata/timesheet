@@ -26,4 +26,9 @@ class WorkEntry extends Model
         return $this->belongsTo(User::class, 'worker_id')
             ->whereHas('roles', fn($q) => $q->where('name', 'worker'));
     }
+
+    public function missionTask()
+    {
+        return $this->belongsTo(MissionTask::class, 'mission_task_id');
+    }
 }

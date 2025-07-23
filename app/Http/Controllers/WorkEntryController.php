@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\WorkEntry;
 use App\Http\Requests\StoreWorkEntryRequest;
 use App\Http\Requests\UpdateWorkEntryRequest;
+use Illuminate\Support\Facades\Auth;
+
+use function Pest\Laravel\json;
 
 class WorkEntryController extends Controller
 {
@@ -29,7 +32,18 @@ class WorkEntryController extends Controller
      */
     public function store(StoreWorkEntryRequest $request)
     {
-        //
+        $fields = $request->validated();
+        $fields['worker_id'] = Auth::id();
+
+        $WorkEntry = WorkEntry::create($fields);
+
+        $missionTask = $WorkEntry->missionTask; // Assuming WorkEntry has a relation to MissionTask
+        if ($missionTask) {
+            $missionTask->update(['status' => 'En Attente']);
+        }
+
+        // Optionally, you can redirect or return a response here
+        return redirect()->back()->with('success', 'Entrée enregistrée avec succès.');
     }
 
     /**

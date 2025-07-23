@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use App\Http\Requests\StoreCommentRequest;
 use App\Http\Requests\UpdateCommentRequest;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
@@ -29,7 +30,10 @@ class CommentController extends Controller
      */
     public function store(StoreCommentRequest $request)
     {
-        //
+        $fields = $request->validated();
+        $fields['author_id'] = Auth::id(); // Assuming you want to set the author_id to the currently authenticated user
+        Comment::create($fields);
+        return redirect()->back()->with('success', 'Commentaire ajouté avec succès.');
     }
 
     /**

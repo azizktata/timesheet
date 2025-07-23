@@ -11,7 +11,7 @@ class StoreWorkEntryRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,10 @@ class StoreWorkEntryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'mission_task_id' => 'required|exists:mission_tasks,id',
+            'entry_date' => 'required|date',
+            'hours_worked' => 'required|numeric|min:0',
+            'description' => 'nullable|string|max:255',
         ];
     }
 }
