@@ -85,6 +85,33 @@ export default function TaskDialog({ open, onClose, task }) {
                                 </div>
                             </AccordionContent>
                         </AccordionItem>
+                        {/* another accordion items for mission details or other information can be added here */}
+                        <AccordionItem value="item-3">
+                            <AccordionTrigger>Détails de la mission</AccordionTrigger>
+                            <AccordionContent className="space-y-2 bg-gray-50 p-4">
+                                <h3 className="font-semibold"> {task.mission?.name}</h3>
+                                <p>
+                                    {' '}
+                                    <strong>Description:</strong> {task.mission?.description}
+                                </p>
+                                <p>
+                                    {' '}
+                                    <strong>Date de début:</strong> {task.mission?.start_date}
+                                </p>
+                                <p>
+                                    {' '}
+                                    <strong>Date de fin:</strong> {task.mission?.end_date}
+                                </p>
+                                <p>
+                                    {' '}
+                                    <strong>Heures estimées:</strong> {task.mission?.estimated_hours}h
+                                </p>
+                                <p>
+                                    {' '}
+                                    <strong>Statut:</strong> {task.mission?.status}
+                                </p>
+                            </AccordionContent>
+                        </AccordionItem>
                     </Accordion>
                 </div>
             </DialogContent>
