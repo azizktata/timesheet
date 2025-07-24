@@ -39,12 +39,10 @@ export default function TaskDialog({ open, onClose, task }) {
                     <p>Type: {task.task_type.name}</p>
                     <p>Description : {task.description}</p>
                     {/* <p>Estimated Hours: {task.estimated_hours}</p> */}
-
                     <div className="mb-4 border-b border-gray-200 pb-2"></div>
                     <h2 className="text-lg font-medium">Entrer des heures de travail</h2>
                     <p className="text-sm text-gray-500">Entrez les heures de travail pour cette tâche.</p>
                     <WorkEntryForm mission_task_id={task.id} onClose={onClose} />
-
                     {/* <div className="mb-4 border-b border-gray-200 pb-2"></div>
                     <h2 className="text-lg font-medium">Détails de la mission</h2>
                     <h3>Mission: {task.mission?.name}</h3> */}

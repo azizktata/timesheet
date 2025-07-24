@@ -26,6 +26,7 @@ class StoreWorkEntryRequest extends FormRequest
             'entry_date' => 'required|date',
             'hours_worked' => 'required|numeric|min:0',
             'description' => 'nullable|string|max:255',
+            'completed' => 'boolean', // New field for marking as completed
         ];
     }
 }

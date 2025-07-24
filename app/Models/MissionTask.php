@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\TaskStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -22,6 +23,10 @@ class MissionTask extends Model
         'description',
         'estimated_hours', // Estimated hours to complete the task
         'actual_hours', // Actual hours spent on the task
+    ];
+
+    protected $casts = [
+        'status' => TaskStatus::class,
     ];
 
     /**

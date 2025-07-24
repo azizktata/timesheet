@@ -11,6 +11,7 @@ export default function WorkEntryForm({ mission_task_id, onClose }) {
         entry_date: '',
         hours_worked: '',
         description: '',
+        completed: false,
     });
 
     function submit(e) {
@@ -22,9 +23,6 @@ export default function WorkEntryForm({ mission_task_id, onClose }) {
                 // reset(); // Optional: reset form after submission
                 onClose(); // Close the dialog after submission
                 // refresh the page after 2 seconds
-                setTimeout(() => {
-                    window.location.reload();
-                }, 2000);
             },
         });
     }
@@ -60,6 +58,16 @@ export default function WorkEntryForm({ mission_task_id, onClose }) {
                         onChange={(e) => setData('description', e.target.value)}
                         className={errors.description && '!ring-red-500'}
                     />
+                </div>
+                <div className="flex items-center space-x-2">
+                    <Input
+                        id="completed"
+                        className="h-4 w-4"
+                        type="checkbox"
+                        checked={data.completed}
+                        onChange={(e) => setData('completed', e.target.checked)}
+                    />
+                    <Label htmlFor="completed">Marqué comme terminé</Label>
                 </div>
                 <Button type="submit" disabled={processing} className="w-full">
                     Enregistrer l'entrée de travail

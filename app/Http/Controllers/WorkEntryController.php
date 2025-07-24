@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\WorkEntry;
 use App\Http\Requests\StoreWorkEntryRequest;
 use App\Http\Requests\UpdateWorkEntryRequest;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 use function Pest\Laravel\json;
@@ -34,12 +35,13 @@ class WorkEntryController extends Controller
     {
         $fields = $request->validated();
         $fields['worker_id'] = Auth::id();
+        $completedAt = $request->input('completed') == true ? Carbon::now() : null; // Set completed_at if completed is true
 
         $WorkEntry = WorkEntry::create($fields);
 
         $missionTask = $WorkEntry->missionTask; // Assuming WorkEntry has a relation to MissionTask
         if ($missionTask) {
-            $missionTask->update(['status' => 'En Attente']);
+            $missionTask->update(['status' => 'en_cours', 'completed_at' => $completedAt]); // Update status and completed_at if applicable
         }
 
         // Optionally, you can redirect or return a response here
